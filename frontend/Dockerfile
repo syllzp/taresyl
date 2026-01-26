@@ -26,6 +26,36 @@ FROM nginx:alpine
 # 复制构建产物到Nginx的html目录
 COPY --from=build /app/dist /usr/share/nginx/html
 
+# 添加Nginx配置，将API请求代理到后端
+COPY <<EOF /etc/nginx/conf.d/default.conf
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  localhost;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+        try_files $uri $uri/ /index.html;
+    }
+
+    # 将API请求代理到后端容器
+    location /api {
+        proxy_pass http://backend:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+EOF
+
 # 暴露端口
 EXPOSE 80
 
