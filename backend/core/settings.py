@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'form_app',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -130,3 +131,18 @@ CORS_ALLOW_ALL_ORIGINS = True
 
 # Allow all hosts for development
 ALLOWED_HOSTS = ['*']
+
+# REST Framework settings
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+# DRF Spectacular settings
+SPECTACULAR_SETTINGS = {
+    'TITLE': '低代码表单 API',
+    'DESCRIPTION': '用于管理低代码表单配置的 API',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    # 配置swagger-ui路径，默认为'/swagger/'
+    'SWAGGER_UI_DIST': '//unpkg.com/swagger-ui-dist@3',
+}
