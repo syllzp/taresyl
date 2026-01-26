@@ -36,6 +36,9 @@ import { ref, onMounted } from 'vue'
 import { VFormDesign, VFormRender } from 'vform3-builds'
 import axios from 'axios'
 
+// 配置axios默认值
+axios.defaults.baseURL = 'http://localhost:8000'
+
 const designerRef = ref(null)
 const formConfig = ref(null)
 const formData = ref({})
