@@ -1,11 +1,11 @@
 # 前端Dockerfile
 # 使用Node.js作为构建镜像
-FROM node:18-alpine AS build
+FROM node:20-alpine AS build
 
 # 设置工作目录
 WORKDIR /app
 
-# 复制package.json和package-lock.json
+# 复制package*.json
 COPY package*.json ./
 
 # 安装依赖
