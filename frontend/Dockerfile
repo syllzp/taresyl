@@ -17,16 +17,6 @@ RUN npm install -g vite
 # 复制源代码
 COPY . .
 
-# 添加调试信息
-RUN echo "=== 调试信息 ==="
-RUN echo "当前目录: $(pwd)"
-RUN echo "文件列表: $(ls -la)"
-RUN echo "Node版本: $(node --version)"
-RUN echo "npm版本: $(npm --version)"
-RUN echo "vite版本: $(vite --version || npx vite --version || echo 'vite not found')"
-RUN echo "vite命令路径: $(which vite || echo 'vite not found')"
-RUN echo "=== 开始构建 ==="
-
 # 构建生产版本
 RUN npm run build
 
