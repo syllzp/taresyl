@@ -27,7 +27,7 @@ FROM nginx:alpine
 COPY --from=build /app/dist /usr/share/nginx/html
 
 # 添加Nginx配置，将API请求代理到后端
-COPY <<EOF /etc/nginx/conf.d/default.conf
+COPY <<'EOF' /etc/nginx/conf.d/default.conf
 server {
     listen 80;
     server_name localhost;
