@@ -1,37 +1,24 @@
 version: '3.8'
 
 services:
-  # 前端服务
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: ghcr.io/syllzp/taresyl-frontend:latest
     ports:
-      - "3000:80"
+      - "80:80"
     depends_on:
       - backend
+    restart: always
     networks:
       - app-network
-    restart: unless-stopped
-
-  # 后端服务
+  
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: ghcr.io/syllzp/taresyl-backend:latest
     ports:
       - "8000:8000"
-    volumes:
-      - ./backend:/app
-      - ./backend/db.sqlite3:/app/db.sqlite3
-    environment:
-      - DEBUG=1
-      - ALLOWED_HOSTS=*
+    restart: always
     networks:
       - app-network
-    restart: unless-stopped
 
-# 网络配置
 networks:
   app-network:
     driver: bridge
