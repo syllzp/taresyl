@@ -11,11 +11,14 @@ COPY package*.json ./
 # 安装依赖
 RUN npm ci
 
+# 全局安装vite，确保有执行权限
+RUN npm install -g vite
+
 # 复制源代码
 COPY . .
 
-# 构建生产版本
-RUN npm run build
+# 构建生产版本，直接使用npx vite build
+RUN npx vite build
 
 # 使用Nginx作为运行时镜像
 FROM nginx:alpine
