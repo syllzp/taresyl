@@ -16,8 +16,19 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from django.http import JsonResponse
+
+# Root path view
+def root_view(request):
+    return JsonResponse({
+        'message': 'Welcome to the Form API',
+        'version': '1.0.0',
+        'docs': '/api/docs/',
+        'status': 'ok'
+    })
 
 urlpatterns = [
+    path('', root_view, name='root'),
     path('admin/', admin.site.urls),
     path('api/', include('form_app.urls')),
     
