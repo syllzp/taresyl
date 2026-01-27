@@ -33,6 +33,8 @@ urlpatterns = [
     path('', root_view, name='root'),
     path('admin/', admin.site.urls),
     path('api/', include('form_app.urls')),
+    path('api/auth/', include('auth_app.urls')),
+    path('api/system/', include('system_app.urls')),
     
     # DRF Spectacular URLs for API documentation
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),

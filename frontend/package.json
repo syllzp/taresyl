@@ -5,7 +5,10 @@
   "scripts": {
     "dev": "npx vite",
     "build": "npx vite build",
-    "preview": "npx vite preview"
+    "preview": "npx vite preview",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +20,17 @@
     "element-plus": "^2.13.1",
     "vform3-builds": "^3.0.10",
     "vite": "^7.3.1",
-    "vue": "^3.5.27"
+    "vue": "^3.5.27",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.4",
+    "@babel/preset-env": "^7.24.4",
+    "@vue/test-utils": "^2.4.5",
+    "@vue/vue3-jest": "^29.2.4",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "vuex": "^4.0.2"
   }
 }
