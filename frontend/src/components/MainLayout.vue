@@ -135,6 +135,10 @@
               <el-icon><Lock /></el-icon>
               <span v-if="sidebarVisible">权限管理</span>
             </el-menu-item>
+            <el-menu-item index="5-4" @click="navigateToRoutePermission" v-permission="'permission_manage'">
+              <el-icon><Guide /></el-icon>
+              <span v-if="sidebarVisible">路由权限</span>
+            </el-menu-item>
             <el-menu-item index="5-3" @click="navigateToSystemLogs">
               <el-icon><Monitor /></el-icon>
               <span v-if="sidebarVisible">系统日志</span>
@@ -263,7 +267,8 @@ import {
   Expand,
   ArrowLeft,
   ArrowRight,
-  SwitchButton
+  SwitchButton,
+  Guide
 } from '@element-plus/icons-vue'
 
 const router = useRouter()
@@ -322,6 +327,11 @@ const navigateToUserManagement = () => {
 // 导航到权限管理
 const navigateToPermissionManagement = () => {
   router.push('/system/permissions')
+}
+
+// 导航到路由权限
+const navigateToRoutePermission = () => {
+  router.push('/system/route-permissions')
 }
 
 // 导航到登录页面

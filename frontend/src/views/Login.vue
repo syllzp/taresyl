@@ -107,6 +107,7 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { userApi } from '../api/userService'
+import permissionService from '../services/permissionService'
 import {
   User,
   Lock,
@@ -198,6 +199,10 @@ const handleLogin = async () => {
       localStorage.removeItem('savedPassword')
       localStorage.removeItem('savedRemember')
     }
+    
+    // 加载用户权限
+    await permissionService.getPermissions()
+    console.log('用户权限加载完成')
     
     ElMessage.success('登录成功')
     // 跳转到首页

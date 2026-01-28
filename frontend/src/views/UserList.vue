@@ -65,6 +65,13 @@
               {{ formatDateTime(scope.row.last_login) }}
             </template>
           </el-table-column>
+          <el-table-column prop="is_active" label="状态" width="100">
+            <template #default="scope">
+              <el-tag :type="scope.row.is_active ? 'success' : 'danger'">
+                {{ scope.row.is_active ? '激活' : '禁用' }}
+              </el-tag>
+            </template>
+          </el-table-column>
           <el-table-column label="角色" min-width="150">
             <template #default="scope">
               <div v-if="userRolesMap[scope.row.id] && userRolesMap[scope.row.id].length > 0">

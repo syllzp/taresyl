@@ -6,6 +6,7 @@ import UserList from '../views/UserList.vue'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import PermissionManagement from '../views/PermissionManagement.vue'
+import RoutePermission from '../views/RoutePermission.vue'
 import MainLayout from '../components/MainLayout.vue'
 import permissionService from '../services/permissionService'
 
@@ -66,6 +67,15 @@ const routes = [
         path: 'system/permissions',
         name: 'PermissionManagement',
         component: PermissionManagement,
+        meta: {
+          requiresAuth: true,
+          requiredPermission: 'permission_manage'
+        }
+      },
+      {
+        path: 'system/route-permissions',
+        name: 'RoutePermission',
+        component: RoutePermission,
         meta: {
           requiresAuth: true,
           requiredPermission: 'permission_manage'
